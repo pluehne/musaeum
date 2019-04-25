@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="{{ .Page.Language | default "en" }}">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+
+		{{ $title := .Site.Title }}
+		{{ if and (ne .Title "") (ne .Site.Title .Title) }}
+			{{ $title = print .Title " · " $title }}
+		{{ end }}
+
+		<title>{{ $title }}</title>
+
+		{{ $description := .Description }}
+		{{ if and (eq $description "") (isset .Site.Params "description") }}
+			{{ $description = .Site.Params.description }}
+		{{ end }}
+
+		{{ if ne $description "" }}
+			<meta name="description" content="{{ $description }}">
+		{{ end }}
+
+		<link href="{{ "index.xml" | relURL }}" rel="alternate" type="application/rss+xml">
+		<link rel="canonical" href="{{ .Permalink }}">
+
+		{{ $cash := resources.Get "3rd-party/cash/js/cash.js" | minify | fingerprint }}
+		<script src="{{ $cash.RelPermalink }}" integrity="{{ $cash.Data.Integrity }}"></script>
+		{{ $script := resources.Get "js/script.js" | minify | fingerprint }}
+		<script src="{{ $script.RelPermalink }}" integrity="{{ $script.Data.Integrity }}"></script>
+
+		{{ $fontawesome := resources.Get "3rd-party/fontawesome/css/all.css" | minify | fingerprint }}
+		<link rel="stylesheet" href="{{ $fontawesome.RelPermalink }}" integrity="{{ $fontawesome.Data.Integrity }}" media="screen">
+		{{ $inter := resources.Get "3rd-party/inter/fonts/inter.css" | minify | fingerprint }}
+		<link rel="stylesheet" href="{{ $inter.RelPermalink }}" integrity="{{ $inter.Data.Integrity }}" media="screen">
+		{{ $robotoMono := resources.Get "3rd-party/roboto-mono/css/roboto-mono.css" | minify | fingerprint }}
+		<link rel="stylesheet" href="{{ $robotoMono.RelPermalink }}" integrity="{{ $robotoMono.Data.Integrity }}" media="screen">
+		{{ $style := resources.Get "scss/style.sass" | toCSS | minify | fingerprint }}
+		<link rel="stylesheet" href="{{ $style.RelPermalink }}" integrity="{{ $style.Data.Integrity }}" media="screen">
+	</head>
+	<body>
+		<div class="column column-main">
+			<header class="row row-header">
+				<div class="content-wrapper">
+					<h2 class="content">
+						<span>{{ .Site.Title }}</span>
+						<a href="#navigation" class="toggle-navigation show-navigation">
+							<i class="fas fa-bars"></i>
+						</a>
+					</h2>
+				</div>
+			</header>
+			<div class="row row-main">
+				<div class="content-wrapper">
+					<div class="content">
+						{{ block "main" . }}
+						{{ end }}
+						{{ if $.File }}
+							<footer>
+								{{ with .Site.Params.githubDocumentationRepository }}
+									<p><a href="{{ . }}/edit/master/content/{{ $.File.Path }}" class="edit-page"><i class="fas fa-pencil-alt"></i> Edit this page</a></p>
+								{{ end }}
+							</footer>
+						{{ end }}
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="column column-aside">
+			<header class="row row-header">
+				<div class="content-wrapper">
+					<h2 class="content">
+						<span></span>
+						<a href="#navigation" class="toggle-navigation hide-navigation">
+							<i class="fas fa-times"></i>
+						</a>
+					</h2>
+				</div>
+			</header>
+			<aside class="row row-main navigation">
+				<div class="content-wrapper">
+					{{ partial "navigation.html" . }}
+				</div>
+			</aside>
+		</div>
+	</div>
+</html>

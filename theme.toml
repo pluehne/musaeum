@@ -1,0 +1,12 @@
+name = "Musaeum"
+license = "Creative Commons Attribution-ShareAlike 4.0 International"
+licenselink = "https://creativecommons.org/licenses/by-sa/4.0/"
+description = "A clean and responsive Hugo theme for manuals and documentation"
+homepage = "https://github.com/pluehne/musaeum"
+tags = ["documentation", "docs", "responsive", "clean", "minimal", "minimalist", "simple", "light", "white", "technical"]
+features = ["documentation", "menu", "responsive"]
+min_version = "0.54"
+
+[author]
+	name = "Patrick Lühne"
+	homepage = "https://www.luehne.de/"

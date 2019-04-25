@@ -1,0 +1,45 @@
+<nav class="content">
+	<ul class="depth-0">
+		<li {{ if .IsHome }}class="active"{{ end }}>
+			<a href="{{ .Site.BaseURL }}">Home</a>
+		</li>
+		{{ range .Site.Home.Sections }}
+			{{ template "navigation" dict "ActiveNode" $ "CurrentNode" . "Depth" 1 }}
+		{{ end }}
+	</ul>
+</nav>
+
+{{ define "navigation" }}
+	{{ $depth := .Depth | default 0 }}
+	{{ $activeNode := .ActiveNode }}
+	{{ $currentNode := .CurrentNode }}
+
+	{{ with $currentNode }}
+		{{ if not .Params.hidden }}
+			{{ $classes := slice }}
+			{{ if and .IsSection (.IsAncestor $activeNode) }}
+				{{ $classes = $classes | append "child-active" }}
+			{{ end }}
+			{{ if eq $activeNode . }}
+				{{ $classes = $classes | append "active" }}
+			{{ end }}
+			<li {{ if ne (len $classes) 0 }}class="{{ delimit $classes " " }}"{{ end }}>
+				<a href="{{ .RelPermalink }}">
+					{{ if .Params.icon }}
+						<img src="{{ .Params.icon | relURL }}" alt="" title="">
+					{{ end }}
+					<span>
+						{{ safeHTML .Params.Pre }}{{ .LinkTitle }}{{ safeHTML .Params.Post }}
+					</span>
+				</a>
+				{{ if and .IsSection (ne (add (len .Pages) (len .Sections)) 0) }}
+					<ul class="depth-{{ $depth }}">
+						{{ range .Pages | union .Sections }}
+							{{ template "navigation" dict "ActiveNode" $activeNode "CurrentNode" . "Depth" (add $depth 1) }}
+						{{ end }}
+					</ul>
+				{{ end }}
+			</li>
+		{{ end }}
+	{{ end }}
+{{ end }}

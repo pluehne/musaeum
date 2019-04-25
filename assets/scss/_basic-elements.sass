@@ -1,0 +1,215 @@
+*:focus
+	outline: solid $focus-outline-color 2px;
+
+*:active
+	outline: none;
+	outline-offset: 2px;
+
+::selection
+	background-color: $selection-background-color;
+	color: $selection-text-color;
+
+em,
+i
+	font-style: italic;
+
+	em,
+	i
+		font-style: normal;
+
+strong,
+b,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6
+	font-weight: $bold-font-weight;
+
+	strong,
+	b
+		font-weight: $extra-bold-font-weight;
+
+a,
+a:visited
+	color: $main-link-color;
+	text-decoration: none;
+
+	&:hover
+		text-decoration: underline;
+
+main
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6
+		margin-top: 1.5em;
+		margin-bottom: 1.5rem;
+
+		line-height: 1.25;
+
+		@include media("<s")
+			hyphens: auto;
+
+	h1
+		font-size: 2.25rem;
+
+		@include media("<s")
+			font-size: 2rem;
+
+	h2
+		font-size: 1.75rem;
+
+		@include media("<s")
+			font-size: 1.5rem;
+
+	h3
+		font-size: 1.521rem;
+
+		@include media("<s")
+			font-size: 1.355rem;
+
+	h4
+		font-size: 1.323rem;
+
+		@include media("<s")
+			font-size: 1.225rem;
+
+	h5
+		font-size: 1.150rem;
+
+		@include media("<s")
+			font-size: 1.107rem;
+
+	h6
+		font-size: 1rem;
+
+		@include media("<s")
+			font-size: 1rem;
+
+	h1,
+	h2
+		padding-bottom: 0.4em;
+
+		border-bottom: solid $main-rule-color 2px;
+
+	hr
+		margin: 0;
+
+	p,
+	pre,
+	ul,
+	ol,
+	li,
+	hr,
+	table,
+	dt,
+	dd,
+	blockquote
+		margin-bottom: 1rem;
+
+		line-height: 1.75;
+
+	p
+		hyphens: auto;
+
+	ul,
+	ol
+		margin-top: 1rem;
+		margin-left: 2.5em;
+
+		li
+			position: relative;
+
+		> li::before
+			position: absolute;
+			left: -2.5em;
+			width: 1.5em;
+
+			text-align: right;
+
+			font-weight: $bold-font-weight;
+			color: #a0a0a0;
+
+	ul
+		list-style-type: none;
+
+		> li::before
+			content: "–";
+
+	ol
+		counter-reset: li;
+
+		> li::before
+			content: counter(li);
+			counter-increment: li;
+
+	code
+		padding: 0.2rem 0.45rem;
+
+		background-color: $inline-code-background-color;
+		border-radius: 0.35rem;
+
+		font-family: $code-font-family;
+
+	pre
+		padding: 1rem;
+		overflow: auto;
+
+		border-radius: 0.35rem;
+		background-color: $code-background-color;
+
+		font-size: 0.9rem;
+
+		> code
+			padding: 0;
+
+			border: none;
+			background: none;
+
+	hr
+		margin-top: 0;
+
+		border: none;
+		border-bottom: solid $main-rule-color 2px;
+
+	blockquote
+		border-left: solid $main-rule-color 4px;
+		padding-left: 1rem;
+
+		color: #707070;
+
+		> :first-child
+			margin-top: 0;
+
+	table
+		display: block;
+		overflow-x: auto;
+
+		thead
+			border-top: solid $main-rule-color 2px;
+
+		tbody,
+		thead
+			border-bottom: solid $main-rule-color 2px;
+
+		th
+			font-weight: $bold-font-weight;
+
+		td, th
+			padding: 0.5rem 1rem;
+
+		tr:nth-child(even)
+			background-color: #f8f8f8;
+
+	dt
+		margin-bottom: 0;
+
+		font-weight: $bold-font-weight;
+		font-style: italic;
+
+	dd
+		padding-left: 1rem;

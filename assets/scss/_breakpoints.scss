@@ -1,0 +1,49 @@
+// Computed media query widths
+$s-breakpoint: 584px;
+$m-breakpoint: ($l-main-width + 2 * $l-content-horizontal-margin) * $l-font-size;
+$l-breakpoint: ($l-main-width + $l-navigation-width + 4 * $l-content-horizontal-margin) * $l-font-size;
+$xl-breakpoint: ($l-main-width + $l-navigation-width + 4 * $l-content-horizontal-margin) * $xl-font-size;
+$xxl-breakpoint: ($l-main-width + $l-navigation-width + 4 * $l-content-horizontal-margin) * $xxl-font-size;
+
+@function translate-media-condition($condition)
+{
+	$conditions:
+	(
+		"screen": "only screen",
+		"print": "only print",
+		"<s": "(max-width: #{$s-breakpoint - 1px})",
+		">=s": "(min-width: #{$s-breakpoint})",
+		"<m": "(max-width: #{$m-breakpoint - 1px})",
+		">=m": "(min-width: #{$m-breakpoint})",
+		"<l": "(max-width: #{$l-breakpoint - 1px})",
+		">=l": "(min-width: #{$l-breakpoint})",
+		"<xl": "(max-width: #{$xl-breakpoint - 1px})",
+		">=xl": "(min-width: #{$xl-breakpoint})",
+		"<xxl": "(max-width: #{$xxl-breakpoint - 1px})",
+		">=xxl": "(min-width: #{$xxl-breakpoint})",
+	);
+
+	@return map-get($conditions, $condition);
+}
+
+@mixin media($sizes...)
+{
+	$query: "";
+
+	@each $size in $sizes
+	{
+		$operator: "";
+
+		@if ($query != "")
+		{
+			$operator: " and ";
+		}
+
+		$query: $query + $operator + translate-media-condition($size);
+	}
+
+	@media #{$query}
+	{
+		@content;
+	}
+}

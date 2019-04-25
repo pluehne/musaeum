@@ -1,0 +1,40 @@
+nav.pagination
+	display: flex;
+	margin-bottom: 1rem;
+
+	border-top: solid $main-rule-color 2px;
+	border-bottom: solid $main-rule-color 2px;
+	line-height: 1.25;
+
+	a.nav
+		display: flex;
+		align-items: center;
+		width: 50%;
+		margin-bottom: 0;
+		padding: 3rem 0;
+
+		border: none;
+
+		@include media("<s")
+			padding: 1.75rem 0;
+
+			hyphens: auto;
+
+		.nav-arrow
+			flex-grow: 0;
+
+		&.nav-prev
+			justify-content: flex-start;
+			padding-right: 0.5rem;
+
+			.nav-arrow
+				margin-right: 0.5rem;
+
+		&.nav-next
+			justify-content: flex-end;
+			margin-left: auto;
+			padding-left: 0.5rem;
+			text-align: right;
+
+			.nav-arrow
+				margin-left: 0.5rem;

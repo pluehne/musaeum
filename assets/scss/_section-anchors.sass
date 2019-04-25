@@ -1,0 +1,20 @@
+h1,
+h2,
+h3,
+h4,
+h5,
+h6
+	a.heading-anchor
+		display: inline-block;
+		width: calc(1em + 1rem);
+		margin: -0.25rem 0 -0.25rem calc(-1em - 1rem);
+		padding: 0.25rem 0.5rem;
+		vertical-align: 0.1em;
+
+		color: $heading-anchor-color;
+		text-align: right;
+		font-size: 0.6em;
+
+	&:hover a.heading-anchor,
+	a.heading-anchor:focus
+		color: $hovered-heading-anchor-color;

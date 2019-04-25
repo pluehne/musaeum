@@ -1,0 +1,48 @@
+{{ $currentNode := . }}
+<nav class="pagination">
+	{{ $.Scratch.Set "PreviousNode" nil }}
+	{{ $.Scratch.Set "PreviousNodeFinal" nil }}
+	{{ $.Scratch.Set "CurrentNodeFinal" nil }}
+	{{ $.Scratch.Set "NextNodeFinal" nil }}
+
+	{{ template "pagination" dict "ActiveNode" $ "CurrentNode" .Site.Home }}
+	{{ range .Site.Home.Sections }}
+		{{ template "pagination" dict "ActiveNode" $ "CurrentNode" . }}
+	{{ end }}
+
+	{{ with ($.Scratch.Get "PreviousNodeFinal") }}
+		<a class="nav nav-prev" href="{{ .RelPermalink }}" title="{{ .LinkTitle }}"><div class="nav-arrow">←</div><div class="nav-link">{{ .LinkTitle }}</div></a>
+	{{ end }}
+	{{ with ($.Scratch.Get "NextNodeFinal") }}
+		<a class="nav nav-next" href="{{ .RelPermalink }}" title="{{ .LinkTitle }}"><div class="nav-link">{{ .LinkTitle }}</div><div class="nav-arrow">→</div></a>
+	{{ end }}
+</nav>
+
+{{ define "pagination" }}
+	{{ $activeNode := .ActiveNode }}
+	{{ $currentNode := .CurrentNode }}
+	{{ $previousNode := $activeNode.Scratch.Get "PreviousNode" | default nil }}
+
+	{{ if not ($activeNode.Scratch.Get "NextNodeFinal") }}
+		{{ if $activeNode.Scratch.Get "CurrentNodeFinal" }}
+			{{ $activeNode.Scratch.Set "NextNodeFinal" $currentNode }}
+		{{ else }}
+			{{ with $currentNode }}
+				{{ if not .Params.hidden }}
+					{{ if eq $activeNode . }}
+						{{ $activeNode.Scratch.Set "CurrentNodeFinal" . }}
+						{{ $activeNode.Scratch.Set "PreviousNodeFinal" ($activeNode.Scratch.Get "PreviousNode") }}
+					{{ end }}
+
+					{{ $activeNode.Scratch.Set "PreviousNode" . }}
+
+					{{ if and .IsSection (ne (add (len .Pages) (len .Sections)) 0) }}
+						{{ range .Pages | union .Sections }}
+							{{ template "pagination" dict "ActiveNode" $activeNode "CurrentNode" . }}
+						{{ end }}
+					{{ end }}
+				{{ end }}
+			{{ end }}
+		{{ end }}
+	{{ end }}
+{{ end }}
