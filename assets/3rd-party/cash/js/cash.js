@@ -574,9 +574,9 @@ function isHidden(ele) {
 
 Cash.prototype.toggle = function (force) {
   return this.each(function (i, ele) {
-    force = force !== undefined ? force : isHidden(ele);
+    var show = force !== undefined ? force : isHidden(ele);
 
-    if (force) {
+    if (show) {
       ele.style.display = '';
 
       if (isHidden(ele)) {
@@ -820,7 +820,7 @@ Cash.prototype.trigger = function (eventFullName, data) {
 
 
 function getValue(ele) {
-  if (ele.multiple) return pluck(filter.call(ele.options, function (option) {
+  if (ele.multiple && ele.options) return pluck(filter.call(ele.options, function (option) {
     return option.selected && !option.disabled && !option.parentNode.disabled;
   }), 'value');
   return ele.value || '';
