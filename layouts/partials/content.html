@@ -4,7 +4,7 @@
 	<div title="authored by {{ delimit . ", " }}"><i class="fas fa-user"></i> {{ delimit . ", " }}</div>
 	{{ end }}
 	{{ with .Params.publishDate }}
-	<div title="published on {{ .Format "January 2, 2006" }}"><i class="fas fa-clock"></i> {{ .Format "January 2, 2006" }}</div>
+	<div title="published on {{ .Format "January 2, 2006" }}"><i class="fas fa-calendar"></i> {{ .Format "January 2, 2006" }}</div>
 	{{ end }}
 	{{ if ne .Params.publishDate .Params.lastmod }}
 		{{ with .Params.lastmod }}
