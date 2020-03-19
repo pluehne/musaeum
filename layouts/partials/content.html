@@ -1,1 +1,17 @@
+{{ if or .Params.authors (or .Params.publishdate .Params.lastmod) }}
+<div class="front-matter">
+	{{ with .Params.authors }}
+	<div title="authored by {{ delimit . ", " }}"><i class="fas fa-user"></i> {{ delimit . ", " }}</div>
+	{{ end }}
+	{{ with .Params.publishDate }}
+	<div title="published on {{ .Format "January 2, 2006" }}"><i class="fas fa-clock"></i> {{ .Format "January 2, 2006" }}</div>
+	{{ end }}
+	{{ if ne .Params.publishDate .Params.lastmod }}
+		{{ with .Params.lastmod }}
+	<div title="last update on {{ .Format "January 2, 2006" }}"><i class="fas fa-sync"></i> {{ .Format "January 2, 2006" }}</div>
+		{{ end }}
+	{{ end }}
+</div>
+{{ end }}
+
 {{ .Content | replaceRE "(<h[1-9] id=\"([^\"]+)\">)(.+)(</h[1-9]+>)" `${1}<a href="#${2}" class="heading-anchor"><i class="fas fa-link"></i></a>${3}${4}` | safeHTML }}
