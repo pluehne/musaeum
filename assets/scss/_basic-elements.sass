@@ -108,7 +108,9 @@ main
 	table,
 	dt,
 	dd,
-	blockquote
+	blockquote,
+	img,
+	figure
 		margin-bottom: 1rem;
 
 		line-height: 1.75;
@@ -216,3 +218,35 @@ main
 
 	img
 		width: 100%;
+
+	figure
+		display: flex
+		flex-direction: column
+
+		margin: 1.75rem 0
+
+		img
+			margin: 0
+
+		&.full-width img
+			margin: 0 ($l-content-horizontal-margin * -1rem)
+
+			width: calc(100% + #{2 * $l-content-horizontal-margin * 1rem})
+
+			@include media("<s")
+				margin-left: $s-content-horizontal-margin * -1rem
+				margin-right: $s-content-horizontal-margin * -1rem
+
+				width: calc(100% + #{2 * $s-content-horizontal-margin * 1rem})
+
+	figcaption
+		margin-top: (0.875 / 2) * 1rem
+		margin-bottom: -0.25rem
+
+		> :last-child
+			margin-bottom: 0
+
+		p
+			font-size: 0.875rem
+			line-height: 1.5
+			opacity: 0.5
