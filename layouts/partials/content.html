@@ -14,4 +14,4 @@
 </div>
 {{ end }}
 
-{{ .Content | replaceRE "(<h[1-9] id=\"([^\"]+)\">)(.+)(</h[1-9]+>)" `${1}<a href="#${2}" class="heading-anchor"><i class="fas fa-link"></i></a>${3}${4}` | safeHTML }}
+{{ .Content | replaceRE "(<h[1-9][^>]+?id=\"([^\"]+)\".*?>)" `${1}<a href="#${2}" class="heading-anchor"><i class="fas fa-link"></i></a>` | safeHTML }}
