@@ -228,17 +228,6 @@ main
 		img
 			margin: 0
 
-		&.full-width img
-			margin: 0 ($l-content-horizontal-margin * -1rem)
-
-			width: calc(100% + #{2 * $l-content-horizontal-margin * 1rem})
-
-			@include media("<s")
-				margin-left: $s-content-horizontal-margin * -1rem
-				margin-right: $s-content-horizontal-margin * -1rem
-
-				width: calc(100% + #{2 * $s-content-horizontal-margin * 1rem})
-
 	figcaption
 		margin-top: (0.875 / 2) * 1rem
 		margin-bottom: -0.25rem
@@ -250,3 +239,15 @@ main
 			font-size: 0.875rem
 			line-height: 1.5
 			opacity: 0.5
+
+main > figure.full-width img
+	margin-left: ($l-content-horizontal-margin * -1rem)
+	margin-right: ($l-content-horizontal-margin * -1rem)
+
+	width: calc(100% + #{2 * $l-content-horizontal-margin * 1rem})
+
+	@include media("<s")
+		margin-left: $s-content-horizontal-margin * -1rem
+		margin-right: $s-content-horizontal-margin * -1rem
+
+		width: calc(100% + #{2 * $s-content-horizontal-margin * 1rem})
