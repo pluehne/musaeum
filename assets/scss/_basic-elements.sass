@@ -1,3 +1,10 @@
+@function margin-correction($font-size, $line-height)
+	@return ($line-height - 1) / 2.0 * $font-size
+
+@mixin display($font-size, $line-height)
+	display: block
+	margin: ($main-block-margin + margin-correction($font-size, $line-height)) 0
+
 *:focus
 	outline: solid $focus-outline-color 2px;
 
@@ -117,16 +124,29 @@ main
 
 		line-height: $main-line-height;
 
+	pre,
+	hr,
+	table,
+	blockquote,
+	img,
+	figure
+		@include display($main-font-size, $main-line-height)
+
 	p
 		hyphens: auto;
 
 	ul,
 	ol
-		margin-top: 1rem;
-		margin-left: 2.5em;
+		margin-left: 2.5em
 
 		li
 			position: relative;
+
+		> :first-child
+			margin-top: 0
+
+		> :last-child
+			margin-bottom: 0
 
 		> li::before
 			position: absolute;
@@ -189,8 +209,10 @@ main
 		> :first-child
 			margin-top: 0;
 
+		> :last-child
+			margin-bottom: 0
+
 	table
-		display: block;
 		overflow-x: auto;
 
 		thead
@@ -222,19 +244,16 @@ main
 		width: 100%;
 
 	figure
-		display: flex
-		flex-direction: column
-
-		margin: 1.75rem 0
+		margin: ($main-block-margin + margin-correction($main-font-size, $main-line-height)) 0 $main-block-margin 0
 
 		img
 			margin: 0
 
 	figcaption
-		margin-top: (0.875 / 2) * 1rem
-		margin-bottom: -0.25rem
+		margin-top: 0.5rem
+		margin-bottom: $main-block-margin + margin-correction($main-font-size, $main-line-height) - margin-correction($caption-font-size, $caption-line-height)
 
-		> :last-child
+		:last-child
 			margin-bottom: 0
 
 		p
