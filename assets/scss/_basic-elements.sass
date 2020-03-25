@@ -40,6 +40,8 @@ a:visited
 		text-decoration: underline;
 
 main
+	font-size: $main-font-size
+
 	h1,
 	h2,
 	h3,
@@ -111,9 +113,9 @@ main
 	blockquote,
 	img,
 	figure
-		margin-bottom: 1rem;
+		margin-bottom: $main-block-margin;
 
-		line-height: 1.75;
+		line-height: $main-line-height;
 
 	p
 		hyphens: auto;
@@ -236,8 +238,8 @@ main
 			margin-bottom: 0
 
 		p
-			font-size: 0.875rem
-			line-height: 1.5
+			font-size: $caption-font-size
+			line-height: $caption-line-height
 			opacity: 0.5
 
 main > figure.full-width img
