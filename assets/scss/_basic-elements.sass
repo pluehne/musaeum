@@ -156,7 +156,7 @@ main
 			text-align: right;
 
 			font-weight: $bold-font-weight;
-			color: #a0a0a0;
+			color: $main-marker-color;
 
 	ul
 		list-style-type: none;
@@ -174,7 +174,7 @@ main
 	code
 		padding: 0.2rem 0.45rem;
 
-		background-color: $inline-code-background-color;
+		background-color: $main-inline-code-background-color;
 		border-radius: 0.35rem;
 
 		font-family: $code-font-family;
@@ -184,7 +184,7 @@ main
 		overflow: auto;
 
 		border-radius: 0.35rem;
-		background-color: $code-background-color;
+		background-color: $main-code-background-color;
 
 		font-size: 0.9rem;
 
@@ -204,7 +204,7 @@ main
 		border-left: solid $main-rule-color 4px;
 		padding-left: 1rem;
 
-		color: #707070;
+		color: $main-caption-color
 
 		> :first-child
 			margin-top: 0;
@@ -229,7 +229,7 @@ main
 			padding: 0.5rem 1rem;
 
 		tr:nth-child(even)
-			background-color: #f8f8f8;
+			background-color: $main-table-even-background-color;
 
 	dt
 		margin-bottom: 0;
@@ -259,7 +259,7 @@ main
 		p
 			font-size: $caption-font-size
 			line-height: $caption-line-height
-			opacity: 0.5
+			color: $main-caption-color
 
 main > figure.full-width img
 	margin-left: ($l-content-horizontal-margin * -1rem)
