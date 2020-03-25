@@ -44,7 +44,7 @@
 					<h2 class="content">
 						<span>{{ .Site.Title }}</span>
 						<a href="#navigation" class="toggle-navigation show-navigation">
-							<i class="fas fa-bars"></i>
+							<i class="icon fas fa-bars"></i>
 						</a>
 					</h2>
 				</div>
@@ -57,7 +57,7 @@
 						{{ if $.File }}
 							<footer>
 								{{ with .Site.Params.githubDocumentationRepository }}
-									<p><a href="{{ . }}/edit/master/content/{{ $.File.Path }}" class="edit-page"><i class="fas fa-pencil-alt"></i> Edit this page</a></p>
+									<p><a href="{{ . }}/edit/master/content/{{ $.File.Path }}" class="edit-page"><i class="icon fas fa-pencil-alt"></i>Edit this page</a></p>
 								{{ end }}
 							</footer>
 						{{ end }}
@@ -71,7 +71,7 @@
 					<h2 class="content">
 						<span></span>
 						<a href="#navigation" class="toggle-navigation hide-navigation">
-							<i class="fas fa-times"></i>
+							<i class="icon fas fa-times"></i>
 						</a>
 					</h2>
 				</div>
