@@ -1,0 +1,29 @@
+{{ $type := .Get "type" | default "info" }}
+{{ $.Scratch.Set "type" "info" }}
+{{ $.Scratch.Set "icon" "fas fa-info-circle" }}
+{{ with (eq $type "danger") }}
+	{{ $.Scratch.Set "type" "danger" }}
+	{{ $.Scratch.Set "icon" "fas fa-ban" }}
+{{ end }}
+{{ with (eq $type "warning") }}
+	{{ $.Scratch.Set "type" "warning" }}
+	{{ $.Scratch.Set "icon" "fas fa-exclamation-triangle" }}
+{{ end }}
+{{ with (eq $type "success") }}
+	{{ $.Scratch.Set "type" "success" }}
+	{{ $.Scratch.Set "icon" "fas fa-check-circle" }}
+{{ end }}
+{{ $.Scratch.Set "additional-classes" "" }}
+{{ with .Get "title" }}
+	{{ $.Scratch.Set "additional-classes" " alert-with-title" }}
+{{ end }}
+<div class="alert colorize-{{ .Scratch.Get "type" }}{{ .Scratch.Get "additional-classes" }}">
+	<div class="alert-body">
+		<i class="alert-icon {{ $.Scratch.Get "icon" }}"></i>
+		{{ with .Get "title" }}
+			<h4 id="{{ . | urlize }}" class="alert-title">{{ . }}</h4>
+		{{ end }}
+		{{ $display_block := dict "display" "block" }}
+		{{ .Inner | $.Page.RenderString $display_block }}
+	</div>
+</div>

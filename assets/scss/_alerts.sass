@@ -1,0 +1,86 @@
+div.alert
+	@include display($main-font-size, $main-line-height)
+
+	padding: 0 1.75rem
+
+	// This workaround prevents margins inside and outside this box from collapsing
+	overflow: hidden
+
+	.alert-body
+		margin: ($main-block-margin + margin-correction($main-font-size, $main-line-height)) 0
+
+	main > &
+		margin-left: $l-content-horizontal-margin * -1rem
+		margin-right: $l-content-horizontal-margin * -1rem
+
+		padding-left: $l-content-horizontal-margin * 1rem
+		padding-right: $l-content-horizontal-margin * 1rem
+
+		@include media("<s")
+			margin-left: $s-content-horizontal-margin * -1rem
+			margin-right: $s-content-horizontal-margin * -1rem
+
+			padding-left: $s-content-horizontal-margin * 1rem
+			padding-right: $s-content-horizontal-margin * 1rem
+
+	h4.alert-title
+		margin-top: 0
+		margin-bottom: $main-block-margin
+		padding-bottom: 0.9em
+
+		border-bottom-style: solid
+		border-bottom-width: 2px
+
+		font-size: 1.15rem
+
+		@include media("<s")
+			font-size: 1.225rem
+
+	.alert-icon
+		float: right
+		vertical-align: bottom
+		margin: 0.175rem 0 1rem 1.75rem
+		font-size: 1.5rem
+
+	&.alert-with-title .alert-icon
+		margin-top: -0.05rem
+
+	blockquote
+		border-left-width: 4px
+		padding-left: 1rem
+
+	&.colorize-success
+		background-color: #ddf6da
+
+		.alert-icon
+			color: $success-icon-color
+
+		h4
+			border-color: $success-rule-color
+
+	&.colorize-info
+		background-color: #e1eaff
+
+		.alert-icon
+			color: $info-icon-color
+
+		h4
+			border-color: $info-rule-color
+
+	&.colorize-warning
+		background-color: #fff4b9
+
+		.alert-icon
+			color: $warning-icon-color
+
+		h4
+			border-color: $warning-rule-color
+
+	&.colorize-danger
+		background-color: #ffe5e1
+
+		.alert-icon
+			color: $danger-icon-color
+
+		h4
+			border-color: $danger-rule-color
