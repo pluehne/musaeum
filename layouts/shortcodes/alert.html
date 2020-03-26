@@ -21,7 +21,7 @@
 	<div class="alert-body">
 		<i class="alert-icon {{ $.Scratch.Get "icon" }}"></i>
 		{{ with .Get "title" }}
-			<h4 id="{{ . | urlize }}" class="alert-title">{{ . }}</h4>
+			<h4 id="{{ . | anchorize }}" class="alert-title">{{ . }}</h4>
 		{{ end }}
 		{{ $display_block := dict "display" "block" }}
 		{{ .Inner | $.Page.RenderString $display_block }}
