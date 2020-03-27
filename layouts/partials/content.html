@@ -14,4 +14,4 @@
 </div>
 {{ end }}
 
-{{ .Content | replaceRE "(<h[1-9][^>]+?id=\"([^\"]+)\".*?>)" `${1}<a href="#${2}" class="heading-anchor"><i class="icon fas fa-link"></i></a>` | safeHTML }}
+{{ .Content | replaceRE "(<h[1-9][^>]+?id=\"([^\"]+)\".*?>)" `${1}<a href="#${2}" class="heading-anchor"><i class="icon fas fa-link"></i></a>` | replaceRE "\n<hint remove=\"trailing newline\">\n" "" | safeHTML }}

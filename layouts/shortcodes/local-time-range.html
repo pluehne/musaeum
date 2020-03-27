@@ -1,0 +1,32 @@
+{{- $delimiter := .Get "delimiter" | default " to " -}}
+{{- $from_time_stamp := .Get "from" -}}
+{{- $to_time_stamp := .Get "to" -}}
+{{- $from_time_zone := (time $from_time_stamp).Format "MST" -}}
+{{- $to_time_zone := (time $to_time_stamp).Format "MST" -}}
+{{- $from_date := (time $from_time_stamp).Format "2006-01-02" -}}
+{{- $to_date := (time $to_time_stamp).Format "2006-01-02" -}}
+{{- $from_day_period := (time $from_time_stamp).Format "pm" -}}
+{{- $to_day_period := (time $to_time_stamp).Format "pm" -}}
+{{ $.Scratch.Set "from-format" "January 2, 2006, 3:04 pm -07:00" }}
+{{ $.Scratch.Set "to-format" "January 2, 2006, 3:04 pm -07:00" }}
+{{- if (eq $from_time_zone $to_time_zone) -}}
+	{{- if (eq $from_date $to_date) -}}
+		{{- if (eq $from_day_period $to_day_period) -}}
+			{{- $.Scratch.Set "from-format" "January 2, 2006, 3:04" -}}
+		{{- else -}}
+			{{- $.Scratch.Set "from-format" "January 2, 2006, 3:04 pm" -}}
+		{{- end -}}
+		{{- $.Scratch.Set "to-format" "3:04 pm -07:00" -}}
+	{{- else -}}
+		{{- $.Scratch.Set "from-format" "January 2, 2006, 3:04 pm" -}}
+		{{- $.Scratch.Set "to-format" "January 2, 2006, 3:04 pm -07:00" -}}
+	{{- end -}}
+{{- end -}}
+<time-range>
+	{{- "" -}}
+	<local-time datetime="{{ (time $from_time_stamp).Format "2006-01-02T15:04:05Z07:00" }}">{{- (time $from_time_stamp).Format ($.Scratch.Get "from-format") | replaceRE "-" "−" | replaceRE "([ap])m" "$1.m." -}}</local-time>
+	{{- $delimiter -}}
+	<local-time datetime="{{ (time $to_time_stamp).Format "2006-01-02T15:04:05Z07:00" }}">{{- (time $to_time_stamp).Format ($.Scratch.Get "to-format") | replaceRE "-" "−" | replaceRE "([ap])m" "$1.m." -}}</local-time>
+	{{- "" -}}
+</time-range>
+<hint remove="trailing newline">
