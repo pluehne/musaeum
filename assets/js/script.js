@@ -95,7 +95,7 @@ $(
 					localToDateTime = localToDateTime.replace(" AM", " a.m.").replace(" PM", " p.m.");
 
 					$(timeStamps[0]).html(localFromDateTime)
-					$(timeStamps[1]).html(localToDateTime + " [" + localTimeZone + "]")
+					$(timeStamps[1]).html(localToDateTime + " <tag>" + localTimeZone + "</tag>")
 				}
 				catch (error)
 				{
