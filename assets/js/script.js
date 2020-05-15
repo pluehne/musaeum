@@ -62,6 +62,7 @@ $(
 						hour12: true,
 						dayPeriod: "short"
 					};
+
 					let toTimeFormat =
 					{
 						year: "numeric",

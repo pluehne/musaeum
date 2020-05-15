@@ -7,19 +7,19 @@
 {{- $to_date := (time $to_time_stamp).Format "2006-01-02" -}}
 {{- $from_day_period := (time $from_time_stamp).Format "pm" -}}
 {{- $to_day_period := (time $to_time_stamp).Format "pm" -}}
-{{ $.Scratch.Set "from-format" "January 2, 2006, 3:04 pm -07:00" }}
-{{ $.Scratch.Set "to-format" "January 2, 2006, 3:04 pm -07:00" }}
+{{ $.Scratch.Set "from-format" "Monday, January 2, 2006, 3:04 pm -07:00" }}
+{{ $.Scratch.Set "to-format" "Monday, January 2, 2006, 3:04 pm -07:00" }}
 {{- if (eq $from_time_zone $to_time_zone) -}}
 	{{- if (eq $from_date $to_date) -}}
 		{{- if (eq $from_day_period $to_day_period) -}}
-			{{- $.Scratch.Set "from-format" "January 2, 2006, 3:04" -}}
+			{{- $.Scratch.Set "from-format" "Monday, January 2, 2006, 3:04" -}}
 		{{- else -}}
-			{{- $.Scratch.Set "from-format" "January 2, 2006, 3:04 pm" -}}
+			{{- $.Scratch.Set "from-format" "Monday, January 2, 2006, 3:04 pm" -}}
 		{{- end -}}
 		{{- $.Scratch.Set "to-format" "3:04 pm -07:00" -}}
 	{{- else -}}
-		{{- $.Scratch.Set "from-format" "January 2, 2006, 3:04 pm" -}}
-		{{- $.Scratch.Set "to-format" "January 2, 2006, 3:04 pm -07:00" -}}
+		{{- $.Scratch.Set "from-format" "Monday, January 2, 2006, 3:04 pm" -}}
+		{{- $.Scratch.Set "to-format" "Monday, January 2, 2006, 3:04 pm -07:00" -}}
 	{{- end -}}
 {{- end -}}
 <time-range>
