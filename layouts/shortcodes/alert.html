@@ -1,17 +1,17 @@
 {{ $type := .Get "type" | default "info" }}
 {{ $.Scratch.Set "type" "info" }}
-{{ $.Scratch.Set "icon" "fas fa-info-circle" }}
+{{ $.Scratch.Set "icon" "ti ti-info-circle" }}
 {{ with (eq $type "danger") }}
 	{{ $.Scratch.Set "type" "danger" }}
-	{{ $.Scratch.Set "icon" "fas fa-ban" }}
+	{{ $.Scratch.Set "icon" "ti ti-ban" }}
 {{ end }}
 {{ with (eq $type "warning") }}
 	{{ $.Scratch.Set "type" "warning" }}
-	{{ $.Scratch.Set "icon" "fas fa-exclamation-triangle" }}
+	{{ $.Scratch.Set "icon" "ti ti-alert-triangle" }}
 {{ end }}
 {{ with (eq $type "success") }}
 	{{ $.Scratch.Set "type" "success" }}
-	{{ $.Scratch.Set "icon" "fas fa-check-circle" }}
+	{{ $.Scratch.Set "icon" "ti ti-circle-check" }}
 {{ end }}
 {{ $.Scratch.Set "additional-classes" "" }}
 {{ with .Get "title" }}
