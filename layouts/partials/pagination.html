@@ -11,10 +11,10 @@
 {{ if or ($.Scratch.Get "PreviousNodeFinal") ($.Scratch.Get "NextNodeFinal") }}
 	<nav class="pagination">
 		{{ with ($.Scratch.Get "PreviousNodeFinal") }}
-			<a class="nav nav-prev" href="{{ .RelPermalink }}" title="{{ .LinkTitle }}"><div class="nav-arrow">←</div><div class="nav-link">{{ .LinkTitle }}</div></a>
+			<a class="nav nav-prev" href="{{ .RelPermalink }}" title="{{ .LinkTitle }}"><div class="nav-arrow"><i class="icon ti ti-arrow-left"></i></div><div class="nav-link">{{ .LinkTitle }}</div></a>
 		{{ end }}
 		{{ with ($.Scratch.Get "NextNodeFinal") }}
-			<a class="nav nav-next" href="{{ .RelPermalink }}" title="{{ .LinkTitle }}"><div class="nav-link">{{ .LinkTitle }}</div><div class="nav-arrow">→</div></a>
+			<a class="nav nav-next" href="{{ .RelPermalink }}" title="{{ .LinkTitle }}"><div class="nav-link">{{ .LinkTitle }}</div><div class="nav-arrow"><i class="icon ti ti-arrow-right"></i></div></a>
 		{{ end }}
 	</nav>
 {{ else }}
