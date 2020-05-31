@@ -50,6 +50,11 @@ a:visited
 	vertical-align: -0.14em
 	margin-right: 0.5em
 
+	// Don’t underline icons in links
+	&:before
+		display: inline-block
+		text-decoration: none
+
 main
 	font-size: $main-font-size
 
