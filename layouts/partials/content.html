@@ -1,7 +1,12 @@
 {{ if or .Params.authors (or .Params.publishdate .Params.lastmod) }}
 <div class="front-matter">
 	{{ with .Params.authors }}
-	<div title="authored by {{ delimit . ", " }}"><i class="icon ti ti-user"></i>{{ delimit . ", " }}</div>
+		{{ if gt (len .) 1 }}
+			{{ $.Scratch.Set "icon" "ti-users" }}
+		{{ else }}
+			{{ $.Scratch.Set "icon" "ti-user" }}
+		{{ end }}
+	<div title="authored by {{ delimit . ", " }}"><i class="icon ti {{ $.Scratch.Get "icon" }}"></i>{{ delimit . ", " }}</div>
 	{{ end }}
 	{{ with .Params.publishDate }}
 	<div title="published on {{ .Format "January 2, 2006" }}"><i class="icon ti ti-clock"></i>{{ .Format "January 2, 2006" }}</div>
