@@ -18,8 +18,9 @@ body
 	display: flex;
 	min-height: 100%;
 	overflow-x: hidden;
+	justify-content: center;
 
-	background-color: $main-background-color;
+	background-color: $navigation-background-color;
 
 	@include media("<l")
 		background-color: $navigation-background-color;
@@ -44,11 +45,19 @@ body
 		@include media("<s")
 			transform: translateX(#{$s-navigation-column-width * 1rem});
 
+	//.content-wrapper
+	//	margin-top: $header-bar-height * 1rem;
+	//
+	//	@include media("<m")
+	//		margin: 0;
+
 	&.column-aside
 		order: 0;
 		align-items: flex-end;
+		flex-grow: 0;
+		flex-shrink: 0;
 
-		background-color: $navigation-background-color;
+		//background-color: #f3f2f0ff;
 
 		@include media("<l")
 			position: fixed;
@@ -61,8 +70,35 @@ body
 			@include media("<s")
 				width: $s-navigation-width * 1rem;
 
+	&.column-remainder
+		display: none
+		order: 2;
+		align-items: flex-end;
+		flex-grow: 1;
+		flex-shrink: 1;
+
+		@include media("<l")
+			position: fixed;
+			top: 0;
+			left: 100%;
+
+		.content
+			opacity: 0;
+
+			max-width: $l-navigation-width * 1rem;
+
+			@include media("<s")
+				max-width: $s-navigation-width * 1rem;
+
 	&.column-main
 		order: 1;
+		flex-shrink: 0;
+		flex-grow: 0;
+		margin-bottom: 0;
+
+		//box-shadow: 0px 2px 7px 0px #d1cec9ff;
+
+		align-items: flex-start;
 
 		@include media("<l")
 			display: flex;
@@ -70,6 +106,9 @@ body
 
 		.row-main .content-wrapper
 			background-color: $main-background-color;
+
+			box-shadow: 0px 2px 7px 0px #dad8d4;
+			margin-bottom: $header-bar-height * 1rem;
 
 		.content
 			width: $l-main-width * 1rem;
@@ -114,7 +153,7 @@ body
 		flex-grow: 1;
 
 		.content-wrapper
-			flex-grow: 1;
+			flex-grow: 0;
 
 		.content
 			margin: $l-content-vertical-margin * 1rem $l-content-horizontal-margin * 1rem;
@@ -122,22 +161,37 @@ body
 			@include media("<s")
 				margin: $s-content-vertical-margin * 1rem $s-content-horizontal-margin * 1rem;
 
+		&.navigation .content
+			margin-top: -2rem
+			margin-left: 0;
+
+			@include media("<s")
+				margin-top: 0
+
 	&.row-header
 		flex-grow: 0;
 		display: flex;
 		flex-flow: column nowrap;
 		justify-content: center;
+		align-items: center;
 		width: 100%;
 		height: $header-bar-height * 1rem;
 
 		background-color: $header-background-color;
 		color: $header-text-color;
 
+		//margin-bottom: $l-content-horizontal-margin * 0.5rem
+
+		//box-shadow: 0px 2px 7px 0px #dad8d4;
+
 		.content
 			margin: 0 $l-content-horizontal-margin * 1rem;
 
 			@include media("<s")
-				margin: 0 $s-content-vertical-margin * 1rem;
+				margin: 0 $s-content-horizontal-margin * 1rem;
+
+			.column-aside &
+				margin-left: 0
 
 		h2
 			display: flex;
@@ -148,7 +202,8 @@ body
 
 			border: 0;
 
-			font-size: 1.25rem;
+			font-size: 1.15rem;
+			text-align: center;
 			font-weight: $bold-font-weight;
 
 			@include media("<s")
