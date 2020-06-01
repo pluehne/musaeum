@@ -1,7 +1,13 @@
 <nav class="content">
 	<ul class="depth-0">
 		<li {{ if .IsHome }}class="active"{{ end }}>
-			<a href="{{ .Site.BaseURL }}">Home</a>
+			<a href="{{ .Site.BaseURL }}">
+				<span>
+					Home
+				</span>
+				{{ if .Site.Home.Params.icon }}
+					<i class="icon {{ .Site.Home.Params.icon }}"></i>
+				{{ end }}</a>
 		</li>
 		{{ range .Site.Home.Sections }}
 			{{ template "navigation" dict "ActiveNode" $ "CurrentNode" . "Depth" 1 }}
