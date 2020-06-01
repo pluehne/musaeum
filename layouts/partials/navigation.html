@@ -25,12 +25,12 @@
 			{{ end }}
 			<li {{ if ne (len $classes) 0 }}class="{{ delimit $classes " " }}"{{ end }}>
 				<a href="{{ .RelPermalink }}">
-					{{ if .Params.icon }}
-						<img src="{{ .Params.icon | relURL }}" alt="" title="">
-					{{ end }}
 					<span>
 						{{ safeHTML .Params.Pre }}{{ .LinkTitle }}{{ safeHTML .Params.Post }}
 					</span>
+					{{ if .Params.icon }}
+						<i class="icon {{ .Params.icon }}"></i>
+					{{ end }}
 				</a>
 				{{ if and .IsSection (ne (add (len .Pages) (len .Sections)) 0) }}
 					<ul class="depth-{{ $depth }}">
