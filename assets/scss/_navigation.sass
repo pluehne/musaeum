@@ -5,6 +5,15 @@ aside.navigation
 		height: calc(100vh - #{$header-bar-height * 1rem});
 		overflow: hidden auto;
 
+	h2
+		background-color: #2e3033
+		color: #ffffff
+		margin: -1.25rem
+		padding: 1.25rem
+		font-size: 1.15rem
+		margin-top: -3.75rem
+		margin-bottom: 1.5rem
+
 	a
 		position: relative;
 		display: flex;
@@ -25,14 +34,18 @@ aside.navigation
 			font-size: 1.25em;
 
 	ul
-		margin-left: 1rem;
+		padding-left: 1rem;
 
 		list-style-type: none;
 		font-size: 0.875rem;
 		font-weight: normal;
 
+		border-left: solid $navigation-rule-color 2px;
+
 		&.depth-0
-			margin-left: 0;
+			padding-left: 0;
+
+			border-left: none;
 
 			> li
 				padding-bottom: -2px;
@@ -52,8 +65,10 @@ aside.navigation
 					border-bottom: none;
 
 		&.depth-1
-			margin-left: 0;
+			padding-left: 0;
 			margin-bottom: 0.5625rem;
+
+			border-left: none;
 
 			> li:first-child > a
 					margin-top: -0.375rem;

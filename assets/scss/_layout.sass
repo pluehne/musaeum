@@ -19,13 +19,11 @@ body
 	min-height: 100%;
 	overflow-x: hidden;
 
-	background-color: $main-background-color;
-
-	@include media("<l")
-		background-color: $navigation-background-color;
+	background-color: $navigation-background-color;
 
 .column
 	flex-grow: 1;
+	flex-shrink: 0
 	display: flex;
 	flex-flow: column;
 	// Necessary to work around CSS limitation where overlong inline elements would cause the parent to expand
@@ -44,9 +42,10 @@ body
 		@include media("<s")
 			transform: translateX(#{$s-navigation-column-width * 1rem});
 
-	&.column-aside
+	&.column-aside, &.column-remainder
 		order: 0;
 		align-items: flex-end;
+		flex-grow: 1;
 
 		background-color: $navigation-background-color;
 
@@ -61,12 +60,22 @@ body
 			@include media("<s")
 				width: $s-navigation-width * 1rem;
 
+	&.column-remainder
+		order: 2;
+		flex-shrink: 1
+
+		.row-main
+			opacity: 0
+
 	&.column-main
 		order: 1;
+		align-items: center;
+		flex-grow: 0;
 
 		@include media("<l")
 			display: flex;
 			align-items: center;
+			flex-grow: 1
 
 		.row-main .content-wrapper
 			background-color: $main-background-color;
@@ -114,7 +123,7 @@ body
 		flex-grow: 1;
 
 		.content-wrapper
-			flex-grow: 1;
+			//flex-grow: 1;
 
 		.content
 			margin: $l-content-vertical-margin * 1rem $l-content-horizontal-margin * 1rem;
@@ -133,7 +142,15 @@ body
 		background-color: $header-background-color;
 		color: $header-text-color;
 
+		margin-bottom: $l-header-vertical-margin * 1rem
+
+		@include media("<m")
+			margin-bottom: $s-header-vertical-margin * 1rem
+
 		.content
+			//width: auto;
+			text-align: center;
+
 			margin: 0 $l-content-horizontal-margin * 1rem;
 
 			@include media("<s")
