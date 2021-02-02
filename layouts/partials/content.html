@@ -6,7 +6,9 @@
 	</h1>
 {{ end }}
 
-<h1>{{ .Title }}</h1>
+{{ if (not .Params.hideTitle) }}
+	<h1>{{ .Title }}</h1>
+{{ end }}
 
 {{ if or .Params.authors (or .Params.publishdate .Params.lastmod) }}
 <div class="front-matter">
