@@ -1,3 +1,11 @@
+{{ if .Params.featuredImage }}
+	<h1 class="featured-image">
+		<figure class="full-width">
+			<img src="{{ .Params.featuredImage }}" alt="{{ .Title }}">
+		</figure>
+	</h1>
+{{ end }}
+
 <h1>{{ .Title }}</h1>
 
 {{ if or .Params.authors (or .Params.publishdate .Params.lastmod) }}
