@@ -1,3 +1,5 @@
+<h1>{{ .Title }}</h1>
+
 {{ if or .Params.authors (or .Params.publishdate .Params.lastmod) }}
 <div class="front-matter">
 	{{ with .Params.authors }}

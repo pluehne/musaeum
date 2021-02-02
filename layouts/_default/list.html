@@ -1,6 +1,5 @@
 {{ define "main" }}
 <main>
-	<h1>{{ .Title }}</h1>
 	{{ partial "content.html" . }}
 
 	{{ if and (not .Params.hideTableOfContents) (ne (add (len .Pages) (len .Sections)) 0) }}
